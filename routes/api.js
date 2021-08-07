@@ -40,7 +40,7 @@ module.exports = function (app) {
 
       let solvedString = solver.solve(puzzle);
       if (!solvedString) return res.json({ error: "Puzzle cannot be solved" });
-      res.json({ solution: solvedString });
+      return res.json({ solution: solvedString });
 
     });
 };
