@@ -4,10 +4,8 @@ const valInput = document.getElementById("val");
 const errorMsg = document.getElementById("error");
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* textArea.value =
-    "..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6.."; */
   textArea.value =
-    ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+    "..9..5.1.85.4....2432......1...69.83.9.....6.62.71...9......1945....4.37.4.3..6..";
   fillpuzzle(textArea.value);
 });
 
