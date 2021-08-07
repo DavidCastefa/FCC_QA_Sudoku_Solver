@@ -71,6 +71,7 @@ class SudokuSolver {
     // Check if the current position of the grid
     // already contains value >0, we iterate
     // for next column
+
     if (grid[row][col] != 0)
       return this.solveSuduko(grid, row, col + 1);
 
@@ -160,11 +161,11 @@ class SudokuSolver {
 
 
   solve(puzzleString) {
+    if (/[^1-9.]/g.test(puzzleString)) return false; // for unit test #2
     let grid = this.transform(puzzleString);
     let solved = this.solveSuduko(grid, 0, 0);
     if (!solved) return false;
     let solvedString = this.transformBack(solved);
-    console.log("solvedString: " + solvedString)
     return solvedString;
   }
 }

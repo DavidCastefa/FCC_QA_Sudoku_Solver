@@ -36,11 +36,35 @@ module.exports = function (app) {
       let puzzle = req.body.puzzle;  // Or, let { puzzle } = req.body
       if (!puzzle) return res.json({ error: "Required field missing" });
       if (puzzle.length != 81) return res.json({ error: "Expected puzzle to be 81 characters long" });
-      if (/[^0-9.]/g.test(puzzle)) return res.json({ error: "Invalid characters in puzzle" });
+      if (/[^1-9.]/g.test(puzzle)) return res.json({ error: "Invalid characters in puzzle" });
 
+      /*let checkResult = {};
+      let puzzle;
+      checkPuzzle(req.body.puzzle, checkResult);
+      console.log ("checkResult: ", checkResult)
+      if (checkResult != {}) return res.json(checkResult); */
+      
       let solvedString = solver.solve(puzzle);
       if (!solvedString) return res.json({ error: "Puzzle cannot be solved" });
       return res.json({ solution: solvedString });
-
     });
+
+ /* const checkPuzzle = (puzzle, checkResult) => {
+    if (!puzzle) {
+      checkResult = { error: "Required field missing" };
+      console.log ("checkResult: ", checkResult)
+      return checkResult;
+    }
+    if (puzzle.length != 81) {
+      checkResult = { error: "Expected puzzle to be 81 characters long" };
+      console.log ("checkResult: ", checkResult)
+      return checkResult;
+    }
+    if (/[^1-9.]/g.test(puzzle)) {
+      checkResult = { error: "Invalid characters in puzzle" };
+      console.log ("checkResult: ", checkResult)
+      return checkResult;
+    }  
+    return puzzle;
+  } */
 };
