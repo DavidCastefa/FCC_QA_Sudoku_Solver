@@ -29,37 +29,37 @@ suite('UnitTests', () => {
 
     test('Logic handles a valid row placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkRowPlacement(goodInput, "I", "8", "4"), true);
+      assert.equal(solver.checkRowPlacement(goodInput, "I", "8", "4"), true);  // this is part of final solution
       done();
     });
 
     test('Logic handles an invalid row placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkRowPlacement(goodInput, "D", "5", "5"), false);
+      assert.equal(solver.checkRowPlacement(goodInput, "D", "5", "5"), false); //there is already a 5 at D1
       done();
     });
 
     test('Logic handles a valid column placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkColPlacement(goodInput, "E", "8", "5"), true);
+      assert.equal(solver.checkColPlacement(goodInput, "E", "8", "5"), true); // this is part of final solution
       done();
     });
 
     test('Logic handles an invalid column placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkColPlacement(goodInput, "E", "8", "1"), false);
+      assert.equal(solver.checkColPlacement(goodInput, "E", "8", "1"), false); //there is already a 1 at C8
       done();
     });
 
     test('Logic handles a valid region (3x3 grid) placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkRegionPlacement(goodInput, "E", "8", "1"), true);
+      assert.equal(solver.checkRegionPlacement(goodInput, "E", "8", "1"), true); // no other 1 in grid
       done();
     });
 
     test('Logic handles an invalid region (3x3 grid) placement', (done) => {
       let goodInput = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
-      assert.equal(solver.checkRegionPlacement(goodInput, "E", "8", "2"), false);
+      assert.equal(solver.checkRegionPlacement(goodInput, "E", "8", "2"), false); //there is already a 2 at D9
       done();
     });
     
