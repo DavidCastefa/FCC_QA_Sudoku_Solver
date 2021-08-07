@@ -10,7 +10,8 @@ class SudokuSolver {
   checkRowPlacement(puzzleString, row, col, value) {
     let grid = this.transform(puzzleString);
     row = row.charCodeAt(0) - 64;  // A = Unicode 65; thus -> 1
-    if (grid[row-1][col-1] != 0) return false;  //Check if number already there
+    if (grid[row-1][col-1] == value) return true;  //if new value already there, OK
+    if (grid[row-1][col-1] != 0) return false;  // if another value already there, NOK
     for (let i = 0; i < 9; i++) {
       if (grid[row-1][i] == value) return false  
     };
@@ -20,7 +21,8 @@ class SudokuSolver {
   checkColPlacement(puzzleString, row, col, value) {
     let grid = this.transform(puzzleString);
     row = row.charCodeAt(0) - 64;  // A = Unicode 65; thus -> 1
-    if (grid[row-1][col-1] != 0) return false;  //Check if number already there
+    if (grid[row-1][col-1] == value) return true;  //if new value already there, OK
+    if (grid[row-1][col-1] != 0) return false;  // if another value already there, NOK
     for (let i = 0; i < 9; i++) {
       if (grid[i][col-1] == value) return false  
     };
@@ -30,7 +32,8 @@ class SudokuSolver {
   checkRegionPlacement(puzzleString, row, col, value) {
     let grid = this.transform(puzzleString);
     row = row.charCodeAt(0) - 64;  // A = Unicode 65; thus -> 1
-    if (grid[row-1][col-1] != 0) return false;  //Check if number already there
+    if (grid[row-1][col-1] == value) return true;  //if new number already there, OK
+    if (grid[row-1][col-1] != 0) return false;  // if another number already there, NOK
     let startRow = row - (row % 3);
     let startCol = col - (col % 3);
     for (let i = 0; i < 3; i++) {
