@@ -89,7 +89,40 @@ suite('Functional Tests', () => {
         });
       done();
     });
+
+    test('Check a puzzle placement with single placement conflict: POST request to /api/check', (done) => {
+      let goodPuzzle = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
+      chai.request(server)
+        .post('/api/check')
+        .send({ 
+          puzzle: goodPuzzle,
+          coordinate: "G9",
+          value: "4"            // single conflict: column
+        })
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body.valid, false);
+          assert.equal(res.body.conflict, "column");
+        });
+      done();
+    });
     
+    test('Check a puzzle placement with multiple placement conflicts: POST request to /api/check', (done) => {
+      let goodPuzzle = ".7.89.....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6"; 
+      chai.request(server)
+        .post('/api/check')
+        .send({ 
+          puzzle: goodPuzzle,
+          coordinate: "E9",
+          value: "4"            // double conflict: column + region
+        })
+        .end(function(err, res){
+          assert.equal(res.status, 200);
+          assert.equal(res.body.valid, false);
+          assert.equal(res.body.conflict, ["column", "region"]);
+        });
+      done();
+    });
      
   });
 

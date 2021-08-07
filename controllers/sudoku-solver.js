@@ -32,10 +32,13 @@ class SudokuSolver {
   checkRegionPlacement(puzzleString, row, col, value) {
     let grid = this.transform(puzzleString);
     row = row.charCodeAt(0) - 64;  // A = Unicode 65; thus -> 1
+    console.log("row: " + row + " col: " + col + " value: " + value)
     if (grid[row-1][col-1] == value) return true;  //if new number already there, OK
     if (grid[row-1][col-1] != 0) return false;  // if another number already there, NOK
-    let startRow = row - (row % 3);
-    let startCol = col - (col % 3);
+    let startRow = row - ((row-1) % 3) -1;
+    let startCol = col - ((col-1) % 3) -1;
+    console.log("(row-1) % 3: " + (row-1) % 3 + " (col-1) % 3: " + (col-1) % 3);
+    console.log("startRow: " + startRow + " startCol: " + startCol);
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (grid[i + startRow][j + startCol] == value) return false  
