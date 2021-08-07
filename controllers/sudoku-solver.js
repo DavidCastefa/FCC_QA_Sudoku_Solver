@@ -162,6 +162,8 @@ class SudokuSolver {
 
   solve(puzzleString) {
     if (/[^1-9.]/g.test(puzzleString)) return false; // for unit test #2
+    if (puzzleString.length != 81) return false; // for unit test #3
+
     let grid = this.transform(puzzleString);
     let solved = this.solveSuduko(grid, 0, 0);
     if (!solved) return false;
